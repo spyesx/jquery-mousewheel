@@ -23,6 +23,9 @@
     }
 }(function ($) {
 
+    var _timeout  = 0;
+    var _isPaused = false;
+
     var toFix = ['wheel', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll'];
     var toBind = 'onwheel' in document || document.documentMode >= 9 ? ['wheel'] : ['mousewheel', 'DomMouseScroll', 'MozMousePixelScroll'];
     var lowestDelta, lowestDeltaXY;
@@ -56,7 +59,8 @@
     };
 
     $.fn.extend({
-        mousewheel: function(fn) {
+        mousewheel: function(fn, time) {
+            _timeout = time;
             return fn ? this.bind("mousewheel", fn) : this.trigger("mousewheel");
         },
 
@@ -67,6 +71,14 @@
 
 
     function handler(event) {
+
+        if(_isPaused){ return; }
+
+        if(_timeout > 0){
+            _isPaused = true;
+            setTimeout(function(){ _isPaused = false; }, _timeout);
+        }
+
         var orgEvent = event || window.event,
             args = [].slice.call(arguments, 1),
             delta = 0,
