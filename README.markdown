@@ -26,7 +26,9 @@ You must use .mouseweel() method instead of .on() method to add the delay parame
 
 ```js
     // Exemple : 250 milliseconds = 4 times / second
-    $('selector').mousewheel(fn, 250);
+    $('selector').mousewheel(function(event, delta, deltaX, deltaY) {
+    	console.log(delta, deltaX, deltaY);
+	}, 250);
 ```
 
 ## See it in action
