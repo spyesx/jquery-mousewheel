@@ -24,9 +24,10 @@ $('#my_elem').mousewheel(function(event, delta, deltaX, deltaY) {
 
 You must use .mouseweel() method instead of .on() method to add the delay parameter. It will limit the frequency of triggered events.
 
+```js
     // Exemple : 250 milliseconds = 4 times / second
     $('selector').mousewheel(fn, 250);
-
+```
 
 ## See it in action
 [See the tests on Github](http://brandonaaron.github.com/jquery-mousewheel/test).
