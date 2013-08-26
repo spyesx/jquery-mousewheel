@@ -20,7 +20,7 @@ $('#my_elem').mousewheel(function(event, delta, deltaX, deltaY) {
     console.log(delta, deltaX, deltaY);
 });
 ```
-# Limit frequency
+## Limit frequency
 
 You must use .mouseweel() method instead of .on() method to add the delay parameter. It will limit the frequency of triggered events.
 
